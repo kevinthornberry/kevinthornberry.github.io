@@ -1,17 +1,99 @@
-<html>
-  <head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rotating P with Countdown</title>
     <style>
-        html, body {
+        body, html {
             margin: 0;
-            width: 100%;
-            background-color: black;
+            padding: 0;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: #000000;
+            color: gold;
+            font-family: Arial, sans-serif;
         }
-        img {
-            width: 100%;
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .letter {
+            font-size: 120px;
+            animation: rotateP 2s infinite;
+        }
+
+        .ampersand {
+            position: absolute;
+            left: 80px;
+            font-size: 40px;
+            opacity: 0;
+            animation-name: ampersandAppear;
+            animation-duration: 1s;
+            animation-iteration-count: infinite;
+            animation-delay: 540ms;
+        }
+
+        @keyframes rotateP {
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(180deg); }
+        }
+
+        @keyframes ampersandAppear {
+            0%, 45%, 55%, 100% { opacity: 0; }
+            50% { opacity: 1; }
+        }
+
+        .countdown {
+            margin-top: 20px;
+            font-size: 24px;
+            text-align: center;
         }
     </style>
-  </head>
-  <body>
-    <img src="assets/dp5.png" />
-  </body>
+</head>
+<body>
+
+    <div class="container">
+        <div class="letter">p</div>
+        <div class="ampersand">&amp;</div>
+    </div>
+    <div class="countdown" id="countdown"></div>
+
+    <script>
+        // Countdown Timer
+        function updateCountdown() {
+            const targetDate = new Date('November 14, 2025 14:00:00');
+            const now = new Date();
+            const difference = targetDate - now;
+
+            if (difference <= 0) {
+                document.getElementById('countdown').innerHTML = 'The date has arrived!';
+                return;
+            }
+
+            const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+            function padZero(num) {
+                return num < 10 ? '0' + num : num;
+            }
+
+            document.getElementById('countdown').innerHTML =
+                `${days}:${padZero(hours)}:${padZero(minutes)}:${padZero(seconds)}`;
+        }
+
+        updateCountdown();
+        setInterval(updateCountdown, 1000); // Update countdown every minute
+    </script>
+
+</body>
 </html>
