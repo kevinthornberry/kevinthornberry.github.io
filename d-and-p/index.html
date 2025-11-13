@@ -1,11 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rotating P with Countdown</title>
-    <style>
-        body, html {
+<style>
+body, html {
             margin: 0;
             padding: 0;
             height: 100%;
@@ -18,53 +14,119 @@
             font-family: Arial, sans-serif;
         }
 
-        .container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-        }
+.fade {
+  position: absolute;
+  width: 100%;
+  min-height: 80vh;
+  top: 0px;
+  background-image: linear-gradient(0deg, transparent, black 75%);
+  z-index: 1;
+}
 
-        .letter {
-            font-size: 120px;
-            animation: rotateP 2s infinite;
-        }
+.star-wars {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  height: 800px;
+  color: #feda4a;
+  font-family: 'Pathway Gothic One', sans-serif;
+  font-size: 500%;
+  font-weight: 600;
+  letter-spacing: 6px;
+  line-height: 150%;
+  perspective: 400px;
+  text-align: center;
+}
 
-        .ampersand {
-            position: absolute;
-            left: 80px;
-            font-size: 40px;
-            opacity: 0;
-            animation-name: ampersandAppear;
-            animation-duration: 1s;
-            animation-iteration-count: infinite;
-            animation-delay: 540ms;
-        }
+.crawl {
+  position: relative;
+  top: 9999px;
+  transform-origin: 50% 100%;
+  animation: crawl 60s linear;
+}
 
-        @keyframes rotateP {
-            0%, 100% { transform: rotate(0deg); }
-            50% { transform: rotate(180deg); }
-        }
+.crawl > .title {
+  font-size: 90%;
+  text-align: center;
+}
 
-        @keyframes ampersandAppear {
-            0%, 45%, 55%, 100% { opacity: 0; }
-            50% { opacity: 1; }
-        }
+.crawl > .title h1 {
+  margin: 0 0 100px;
+  text-transform: uppercase;
+}
 
-        .countdown {
-            margin-top: 20px;
-            font-size: 24px;
-            text-align: center;
-        }
-    </style>
+@keyframes crawl {
+  0% {
+    top: 0;
+    transform: rotateX(20deg)  translateZ(0);
+  }
+  100% { 
+    top: -6000px;
+    transform: rotateX(25deg) translateZ(-2500px);
+  }
+}
+
+
+.outer {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  top: 10px;
+}
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  z-index: 10;
+}
+
+.letter {
+    font-size: 120px;
+    animation: rotateP 2s infinite;
+}
+
+.ampersand {
+    position: absolute;
+    left: 100px;
+    font-size: 40px;
+    opacity: 0;
+    animation-name: ampersandAppear;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    animation-delay: 540ms;
+}
+
+@keyframes rotateP {
+    0%, 100% { transform: rotate(0deg); }
+    50% { transform: rotate(180deg); }
+}
+
+@keyframes ampersandAppear {
+    0%, 45%, 55%, 100% { opacity: 0; }
+    50% { opacity: 1; }
+}
+
+.countdown {
+    margin-top: 20px;
+    font-size: 24px;
+    text-align: center;
+  z-index: 10;
+}
+
+
+</style>
 </head>
+
 <body>
 
-    <div class="container">
+  <div class="outer">
+  <div class="container">
         <div class="letter">p</div>
         <div class="ampersand">&amp;</div>
     </div>
     <div class="countdown" id="countdown"></div>
+  </div>
 
     <script>
         // Countdown Timer
@@ -94,6 +156,61 @@
         updateCountdown();
         setInterval(updateCountdown, 1000); // Update countdown every minute
     </script>
+<div class="fade"></div>
 
+
+
+<section class="star-wars">
+
+  <div class="crawl">
+
+<p>2x M&amp;S British Thick Cut Ribeye Steak</p>
+<p>2x M&amp;S Red Mulled Wine</p>
+<p>1x Pringles Salt &amp; Vinegar Sharing Crisps</p>
+<p>1x Pringles Prawn Cocktail Flavour Sharing Crisps</p>
+<p>1x Pringles Sour Cream &amp; Onion Sharing Crisps</p>
+<p>1x Alpro Oat No Sugar Long Life Dairy Free Drink</p>
+<p>1x Baileys Original Irish Cream Liqueur</p>
+<p>1x Ocado British Semi Skimmed Milk 4 Pints</p>
+<p>1x GAIL's Sourdough</p>
+<p>1x Cook With M&amp;S Large Flat Leaf Parsley</p>
+<p>2x Natoora Echalion Shallots</p>
+<p>2x Delicius Anchovy Fillets in Olive Oil</p>
+<p>1x Kellogg's Crunchy Nut Hazelnut &amp; Chocolate Breakfast Granola</p>
+<p>2x M&amp;S Tenderstem Broccoli Tips</p>
+<p>2x Pizza Express American</p>
+<p>2x Moet &amp; Chandon Brut Imperial Champagne, Gift Box, 75cl</p>
+<p>1x Ice Co Premium Ice Cubes</p>
+<p>1x M&amp;S Scottish Single Salmon Fillet</p>
+<p>1x M&amp;S Collection 6 Pork &amp; Caramelised Onion Sausages</p>
+<p>2x Madri Excepcional Premium Lager Beer Can</p>
+<p>2x Greene King Level Head Session IPA Craft Beer Cans 4.0%</p>
+<p>2x Beavertown Neck Oil Session IPA</p>
+<p>1x President French Butter with Sea Salt Crystals</p>
+<p>2x M&amp;S 9 Mini Mixed Roll Selection</p>
+<p>1x M&amp;S Collection British 6 Cumberland Sausages</p>
+<p>1x Ocado Tea Towel</p>
+<p>2x Pizza Express Margherita</p>
+<p>1x Diet Coke</p>
+<p>1x Happy Eggs Large Free Range Eggs</p>
+<p>1x M&amp;S Hash Browns Frozen</p>
+<p>1x Huel RTD Banana Multipack</p>
+<p>1x Huel RTD Berry Multipack</p>
+<p>1x Huel RTD Vanilla Multipack</p>
+<p>1x Huel RTD Chocolate Multipack</p>
+<p>1x Innocent Pure Orange Juice with Bits</p>
+<p>1x Innocent Pure Orange Juice Smooth</p>
+<p>2x Ocado 10 Unsmoked Back Bacon Rashers</p>
+<p>1x Taylors Lazy Sunday Ground Coffee</p>
+<p>2x Mowi ASC Scottish Smoked Salmon</p>
+<p>2x M&amp;S Collection Scottish Salmon Gravadlax</p>
+<p>2x Wall's Mini Milk Vanilla, Strawberry &amp; Chocolate Ice Cream Lollies</p>
+<p>1x Birds Eye 18 MSC Breaded Cod Fish Fingers</p>
+<p>1x De Bortoli Noble One</p>
+<p>1x Propercorn Sweet Microwave Popcorn</p>
+<p>1x Propercorn Salted Microwave Popcorn</p>
+  </div>
+
+</section>
 </body>
 </html>
